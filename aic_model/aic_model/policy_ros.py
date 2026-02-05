@@ -39,8 +39,6 @@ class PolicyRos(ABC):
     def __init__(self, parent_node):
         self._parent_node = parent_node
         self.get_logger().info("PolicyRos.__init__()")
-        self._tf_buffer = Buffer()
-        self._tf_listener = TransformListener(self._tf_buffer, self._parent_node)
 
     def get_logger(self):
         return self._parent_node.get_logger()
