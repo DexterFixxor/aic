@@ -8,6 +8,12 @@ controller_manager:
     fts_broadcaster:
       type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
 
+    fts_filtered_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+
+    fts_filter:
+      type: chained_filter_controller/ChainedFilter
+
     aic_controller:
       type: aic/Controller
 
