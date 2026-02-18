@@ -691,11 +691,6 @@ void ScoringTier2::JerkCallback(const TransformStampedMsg &_tf) {
     return (a2 - a1) / (mid_a2 - mid_a1);
   };
 
-  // Compute linear jerk.
-  this->linearJerk.x = computeJerk(px);
-  this->linearJerk.y = computeJerk(py);
-  this->linearJerk.z = computeJerk(pz);
-
   // Compute velocity at the central sample (v2) to gate jerk accumulation.
   // Only accumulate jerk when the arm is actually moving, so that stillness
   // periods don't dilute the average toward zero.
@@ -706,10 +701,15 @@ void ScoringTier2::JerkCallback(const TransformStampedMsg &_tf) {
 
   constexpr double kVelocityThreshold = 0.01;  // m/s
   if (speed > kVelocityThreshold) {
+    // Compute linear jerk.
+    this->linearJerk.x = computeJerk(px);
+    this->linearJerk.y = computeJerk(py);
+    this->linearJerk.z = computeJerk(pz);
+
     double jerkMag = std::sqrt(this->linearJerk.x * this->linearJerk.x +
                                this->linearJerk.y * this->linearJerk.y +
                                this->linearJerk.z * this->linearJerk.z);
-    double dt = t2 - t1;
+    double dt = (t3 - t0) / 3.0;
     this->totalJerkTime += dt;
     this->accumLinearJerkMagnitude += jerkMag * dt;
     this->avgLinearJerkMagnitude =
