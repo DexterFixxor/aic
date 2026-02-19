@@ -8,12 +8,6 @@ controller_manager:
     fts_broadcaster:
       type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
 
-    fts_filtered_broadcaster:
-      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
-
-    fts_filter:
-      type: chained_filter_controller/ChainedFilter
-
     aic_controller:
       type: aic/Controller
 
@@ -24,6 +18,14 @@ fts_broadcaster:
     frame_id: ati/tool_link
     sensor_name: AtiForceTorqueSensor
     update_rate: 50
+    sensor_filter_chain: 
+      filter1:
+        name: low_pass_filter
+        type: "control_filters/LowPassFilterWrench"
+        params:
+          sampling_frequency: 100.0
+          damping_frequency: 1.0
+          damping_intensity: 0.707
 
 aic_controller:
   ros__parameters:
@@ -68,7 +70,7 @@ aic_controller:
       default_values:
         control_stiffness: [75.0, 75.0, 75.0, 75.0, 75.0, 75.0]
         control_damping: [35.0, 35.0, 35.0, 35.0, 35.0, 35.0]
-        offset_wrench: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        offset_wrench: [0.0, 0.0, 0.7848, 0.0, 0.0, 0.0]
 
     joint_impedance:
       interpolator:
