@@ -369,6 +369,7 @@ namespace aic_scoring
     private: int js = 0;
     private: double spdavg = 0;
     private: std::vector<double> spd;
+    private: std::vector<double> jerks;
   };
 
   // The Tier2 class as a node.

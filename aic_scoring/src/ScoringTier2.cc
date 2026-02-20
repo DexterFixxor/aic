@@ -513,9 +513,13 @@ Tier2Score::CategoryScore ScoringTier2::GetTrajectoryJerkScore() const {
   sstream << "Average linear jerk magnitude of the end effector: " << jerk
           << " m/s^3";
 
-  for (unsigned int i = 0; i < spd.size(); ++i) {
-    std::cerr << i << ", " << spd[i] << std::endl;
+  // for (unsigned int i = 0; i < spd.size(); ++i) {
+  //   std::cerr << i << ", " << spd[i] << std::endl;
+  // }
+  for (unsigned int i = 0; i < jerks.size(); ++i) {
+    std::cerr << i << ", " << jerks[i] << std::endl;
   }
+
 
   const double score = CalculateInverseProportionalScore(
       kMaxJerkScore, kMinJerkScore, kMaxJerkValue, kMinJerkValue, jerk);
@@ -707,6 +711,17 @@ void ScoringTier2::JerkCallback(const TransformStampedMsg &_tf) {
   double speed = std::sqrt(v2x * v2x + v2y * v2y + v2z * v2z);
   spdavg += speed;
   spd.push_back(speed);
+
+  {
+    double x = computeJerk(px);
+    double y = computeJerk(py);
+    double z = computeJerk(pz);
+
+    double jerkMag = std::sqrt(x * x +
+                               y * y +
+                               z * z);
+    jerks.push_back(jerkMag);
+  }
 
   // std::cerr << " v " << v1 << ", " << v2 << ", " << v3 << std::endl;
   // std::cerr << " speed " << speed << std::endl;
