@@ -67,7 +67,7 @@ class WaveArm(Policy):
             y_scale -= 1.0  # y_scale will move linearly between [-1..1] and back.
 
             # Move the arm along a line, while looking down at the task board.
-            self.move_to_pose(
+            self.set_pose_target(
                 move_robot=move_robot,
                 pose=Pose(
                     position=Point(x=-0.4, y=0.45 + 0.3 * y_scale, z=0.25),

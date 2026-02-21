@@ -57,6 +57,7 @@ class MoveRobotCallback(Protocol):
     As a convenience, a reasonable set of parameters is populated in a MotionUpdate
     message by the create_motion_update(pose) function in the Policy class.
     """
+
     def __call__(
         self,
         motion_update: MotionUpdate = None,
@@ -86,7 +87,7 @@ class Policy(ABC):
         """Sleep for the given duration using the node's clock (sim-time aware)."""
         clock = self.get_clock().sleep_for(Duration(seconds=duration_sec))
 
-    def move_to_pose(self, move_robot: MoveRobotCallback, pose: Pose):
+    def set_pose_target(self, move_robot: MoveRobotCallback, pose: Pose):
         """Invoke the move_robot callback to request the supplied Pose.
 
         This is a convenience function which populates a MotionUpdate message
@@ -99,12 +100,8 @@ class Policy(ABC):
                 stamp=self._parent_node.get_clock().now().to_msg(),
             ),
             pose=pose,
-            target_stiffness=np.diag(
-                [90.0, 90.0, 90.0, 50.0, 50.0, 50.0]
-            ).flatten(),
-            target_damping=np.diag(
-                [50.0, 50.0, 50.0, 20.0, 20.0, 20.0]
-            ).flatten(),
+            target_stiffness=np.diag([90.0, 90.0, 90.0, 50.0, 50.0, 50.0]).flatten(),
+            target_damping=np.diag([50.0, 50.0, 50.0, 20.0, 20.0, 20.0]).flatten(),
             feedforward_wrench_at_tip=Wrench(
                 force=Vector3(x=0.0, y=0.0, z=0.0),
                 torque=Vector3(x=0.0, y=0.0, z=0.0),
