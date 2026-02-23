@@ -272,7 +272,8 @@ std::pair<Tier2Score, Tier3Score> ScoringTier2::ComputeScore() {
     this->avgLinearJerk.y = this->accumLinearJerk.y * inv_totalJerkTime;
     this->avgLinearJerk.z = this->accumLinearJerk.z * inv_totalJerkTime;
   }
-  RCLCPP_INFO(this->node->get_logger(), "Finished calculating jerk and efficiency callbacks");
+  RCLCPP_INFO(this->node->get_logger(),
+              "Finished calculating jerk and efficiency callbacks");
   auto end = std::chrono::steady_clock::now();
   std::chrono::duration<double> elapsed = end - start;
   // Log time taken to calculate jerk/efficiency
@@ -478,7 +479,8 @@ std::optional<ScoringTier2::TransformStampedMsg> ScoringTier2::GetTransform(
     const std::string &_reference_frame) const {
   std::string error;
   try {
-    return this->tf2_buffer->lookupTransform(_reference_frame, _target_frame, _t);
+    return this->tf2_buffer->lookupTransform(_reference_frame, _target_frame,
+                                             _t);
   } catch (const tf2::TransformException &e) {
     RCLCPP_ERROR(
         this->node->get_logger(),
@@ -740,7 +742,8 @@ void ScoringTier2::JerkCallback(const TransformStampedMsg &_tf) {
   double t2 = toSeconds(this->tfHistory[2].header.stamp);
   double t3 = toSeconds(this->tfHistory[3].header.stamp);
 
-  // Pre-compute time differences and their reciprocals (avoid repeated division).
+  // Pre-compute time differences and their reciprocals (avoid repeated
+  // division).
   double dt10 = t1 - t0;
   double dt21 = t2 - t1;
   double dt32 = t3 - t2;
