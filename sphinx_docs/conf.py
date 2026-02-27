@@ -42,11 +42,24 @@ extensions = [
     "sphinx_multiversion",
 ]
 
+myst_enable_extensions = [
+    "colon_fence",
+    "dollarmath",
+    "amsmath",
+]
+
+
 # mathjax hacks
 mathjax3_config = {
     "tex": {
-        "inlineMath": [["\\(", "\\)"]],
-        "displayMath": [["\\[", "\\]"]],
+        "inlineMath": [
+            ["\\(", "\\)"],
+            ["$", "$"]
+        ],
+        "displayMath": [
+            ["\\[", "\\]"],
+            ["$$", "$$"]
+        ],
     },
 }
 
