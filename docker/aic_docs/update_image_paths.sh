@@ -5,9 +5,9 @@
 set -e
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-SOURCE_DIR="${REPO_ROOT}/docs/sphinx/source"
+SOURCE_DIR="${REPO_ROOT}/docs"
 
 cd "${SOURCE_DIR}"
-find . -name "*.md" -exec sed -i 's|../../media/|./_static/assets/|g' {} +
+find . -name "*.md" -exec sed -i 's|../../media/|./source/_static/assets/|g' {} +
 
 echo "Done. Updated image paths in ${SOURCE_DIR}"
