@@ -18,10 +18,10 @@ Table of Contents
    :maxdepth: 2 
    :caption: Challenge
 
-   Overview <source/overview>
-   Competition Phases <source/phases>
-   Qualification Phase <source/qualification_phase>
-   Scoring <source/scoring>
+   Overview <overview>
+   Competition Phases <phases>
+   Qualification Phase <qualification_phase>
+   Scoring <scoring>
 
 
 .. toctree::
@@ -29,44 +29,44 @@ Table of Contents
    :caption: Installation
    :titlesonly:
 
-   Getting Started <source/getting_started>
-   Build Locally <source/build_eval>
+   Getting Started <getting_started>
+   Build Locally <build_eval>
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Technical Documentation
 
-   Scene Description <source/scene_description>
-   Task Board Description <source/task_board_description>
-   AIC ROS 2 Interfaces <source/aic_interfaces>
-   AIC Controller <source/aic_controller>
-   AIC Rules <source/challenge_rules>
-   Integrating a Policy <source/policy>
-   Troubleshooting <source/troubleshooting>
+   Scene Description <scene_description>
+   Task Board Description <task_board_description>
+   AIC ROS 2 Interfaces <aic_interfaces>
+   AIC Controller <aic_controller>
+   AIC Rules <challenge_rules>
+   Integrating a Policy <policy>
+   Troubleshooting <troubleshooting>
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Participant Utilities
    
-   Participant Utilities <source/participant_utilities>
-   Example Policies <source/aic_example_policies>
+   Participant Utilities <participant_utilities>
+   Example Policies <aic_example_policies>
  
  
 .. toctree::
    :maxdepth: 2
    :caption: Submission
    
-   Guidelines <source/submission>
-   Access Control <source/access_control>
-   Custom Dockerfile <source/custom_dockerfile>
-   Scoring Tests <source/scoring_tests>
+   Guidelines <submission>
+   Access Control <access_control>
+   Custom Dockerfile <custom_dockerfile>
+   Scoring Tests <scoring_tests>
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Reference Materials
    
-   Glossary <source/glossary>
+   Glossary <glossary>
 

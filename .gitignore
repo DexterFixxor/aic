@@ -14,6 +14,6 @@ aic_utils/aic_mujoco/mjcf/*.stl
 aic_utils/aic_mujoco/mjcf/*.png
 
 # Ignore media and build artifacts for aic_docs
-docs/sphinx/source/_static/assets
-docs/sphinx/_build
+docs/source/_static/assets
+docs/_build
 
